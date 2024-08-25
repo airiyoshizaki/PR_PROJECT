@@ -1,5 +1,5 @@
 services:
-  practice-app-1:
+  hoge-app-1:
     build:
       context: .
       dockerfile: ./Dockerfile.dev
@@ -10,8 +10,8 @@ services:
     volumes:
       - .:/go/app
     networks:
-      - practice-1-network
+      - hoge-network-1
 
 networks:
-  practice-1-network:
+  hoge-network-1:
     external: true
