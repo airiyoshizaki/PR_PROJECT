@@ -1,0 +1,34 @@
+host: localhost:6061
+info:
+  contact: {}
+  description: routetest.
+  title: routetest.
+  version: "1.0"
+paths:
+  /:
+    get:
+      consumes:
+      - application/json
+      description: get string by ID
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Success
+      summary: Show an account
+      tags:
+      - home
+  /about:
+    get:
+      consumes:
+      - application/json
+      description: get string by ID
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Success
+      summary: Show an account
+      tags:
+      - about
+swagger: "2.0"

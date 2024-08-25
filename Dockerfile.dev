@@ -1,0 +1,33 @@
+# ベースイメージとしてGoの公式イメージを使用
+FROM golang:1.22.3-alpine
+
+# アプリケーションのソースコードをコピー
+WORKDIR /go/app
+COPY ./ .
+
+RUN apk upgrade --update && apk --no-cache add git
+
+# 必要なツールをインストールするためにalpineパッケージマネージャーを更新
+RUN apk add --update nodejs npm && \
+    npm install -g swagger2openapi
+
+# Goの依存ツールをインストール
+RUN go install github.com/air-verse/air@latest && \
+	go install github.com/go-delve/delve/cmd/dlv@latest && \
+	go install github.com/swaggo/swag/cmd/swag@latest && \
+    go install github.com/golangci/golangci-lint/cmd/golangci-lint@latest
+
+RUN go mod download
+
+# # Swaggerのドキュメントを生成
+# RUN swag init
+
+# # アプリケーションをビルド
+# RUN go build -o main .
+
+# コンテナ内でポート8080を開放
+EXPOSE 6061
+
+# RUN rm ~/.netrc # スクリプトやCI/CDパイプラインの一部として、認証情報を保存するために.netrcファイルが生成されることがあります。
+
+CMD ["air", "-c", ".air.toml"]

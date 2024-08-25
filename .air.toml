@@ -1,0 +1,63 @@
+[build]
+  # ビルドコマンド。ここではシンプルな go build コマンドを使用。
+  # cmd = "go build -o main ."
+  cmd = "sh -c 'go build -gcflags=\"all=-N -l\" -o ./tmp/main .'"
+  
+  # 出力バイナリの名前
+  bin = "main"
+  
+  # 変更検出後のビルド遅延時間（ミリ秒）
+  delay = 1000
+  
+  # 監視から除外するディレクトリのリスト
+  exclude_dir = ["assets", "tmp", "vendor", "testdata"]
+  
+  # 監視から除外するファイルのリスト
+  exclude_file = []
+
+  exclude_unchanged = false
+  follow_symlink = false
+  full_bin = "dlv --headless=true --listen=:2345 --api-version=2 --accept-multiclient exec --continue ./tmp/main"
+  include_dir = []
+  kill_delay = "500ms"
+  
+  # 監視から除外するファイル名のパターン（正規表現）
+  exclude_regex = ["_test.go"]
+  
+  # 監視対象のファイル拡張子
+  include_ext = ["go", "tpl", "tmpl", "html"]
+  
+  # ビルドエラーを記録するログファイルの名前
+  log = "build-errors.log"
+  
+  # コード変更時に自動で再ビルドするかどうか
+  rerun = true
+  rerun_delay = 500
+
+[color]
+  # アプリケーションの出力の色
+  app = "cyan"
+  
+  # ビルドの出力の色
+  build = "yellow"
+  
+  # メインの出力の色
+  main = "magenta"
+  
+  # 実行中のプロセスの出力の色
+  runner = "green"
+  
+  # 監視ツールの出力の色
+  watcher = "blue"
+
+[log]
+  # メインのログのみ表示するかどうか
+  main_only = false
+  
+  # ログにタイムスタンプを含めるかどうか
+  time = true
+
+# その他の設定
+[misc]
+  # Airが終了する際にクリーンアップするかどうか
+  clean_on_exit = false

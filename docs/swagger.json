@@ -1,0 +1,44 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "contact": {},
+        "description": "routetest.",
+        "title": "routetest.",
+        "version": "1.0"
+    },
+    "paths": {
+        "/": {
+            "get": {
+                "description": "get string by ID",
+                "responses": {
+                    "200": {
+                        "description": "Success"
+                    }
+                },
+                "summary": "Show an account",
+                "tags": [
+                    "home"
+                ]
+            }
+        },
+        "/about": {
+            "get": {
+                "description": "get string by ID",
+                "responses": {
+                    "200": {
+                        "description": "Success"
+                    }
+                },
+                "summary": "Show an account",
+                "tags": [
+                    "about"
+                ]
+            }
+        }
+    },
+    "servers": [
+        {
+            "url": "//localhost:6061"
+        }
+    ]
+}

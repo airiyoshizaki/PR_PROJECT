@@ -1,0 +1,17 @@
+services:
+  practice-app-1:
+    build:
+      context: .
+      dockerfile: ./Dockerfile.dev
+    env_file:
+      - .env
+    ports:
+      - 6061:8080
+    volumes:
+      - .:/go/app
+    networks:
+      - practice-1-network
+
+networks:
+  practice-1-network:
+    external: true
